@@ -7,7 +7,7 @@
 
 from selenium import webdriver
 import time
-from scrapy.downloadermiddlewares.stats import DownloaderStats
+# from scrapy.downloadermiddlewares.stats import DownloaderStats
 from scrapy.http import Request, FormRequest, HtmlResponse
 
 #headers
@@ -25,8 +25,8 @@ global  driver
 driver = webdriver.PhantomJS(service_args=['--ssl-protocol=any'],executable_path="F:\homestead/phantomjs",desired_capabilities=cap)
 
 class WooghtDownloadMiddleware(object):
+    
     def process_request(self, request, spider):
-
         global driver
         url=request.url;
         js = "var q=document.documentElement.scrollTop=10000"
@@ -36,6 +36,7 @@ class WooghtDownloadMiddleware(object):
         time.sleep(2)
         body = driver.page_source                                                   #获取素有内容
         print("访问"+request.url)
+        driver.quit()                                                               #关闭浏览器
         return HtmlResponse(body=body, encoding='utf-8',request=request,url=url)
 
 #
