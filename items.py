@@ -11,5 +11,10 @@ import scrapy
 class HomesteadItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-
     body = scrapy.Field()
+
+class ArticleItem(scrapy.Item):
+    title = scrapy.Field()
+    article = scrapy.Field()
+    thetime = scrapy.Field()
+    src = scrapy.Field()

@@ -15,8 +15,10 @@ cap = webdriver.DesiredCapabilities.PHANTOMJS
 cap["phantomjs.page.settings.resourceTimeout"] = 1000
 cap["phantomjs.page.settings.loadImages"] = True
 cap["phantomjs.page.settings.disk-cache"] = True
-cap["phantomjs.page.customHeaders.Cookie"] = 'SINAGLOBAL=3955422793326.2764.1451802953297; '
+cap["phantomjs.page.customHeaders.Cookie"] = 'aliyungf_tc=AQAAAIplnShTMAQAebbT3lEVm4rc3txx; '
 cap["phantomjs.page.settings.userAgent"] = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+cap['phantomjs.page.settings.connection'] = 'keep-alive'
+cap['phantomjs.page.settings.host'] = 'xueqiu.com'
 
 
 #定义在外部 防止多次实例phantomjs
@@ -25,19 +27,20 @@ global  driver
 driver = webdriver.PhantomJS(service_args=['--ssl-protocol=any'],executable_path="F:\homestead/phantomjs",desired_capabilities=cap)
 
 class WooghtDownloadMiddleware(object):
-    
+
     def process_request(self, request, spider):
         global driver
         url=request.url;
-        js = "var q=document.documentElement.scrollTop=10000"
+        js = "var q=document.documentElement.scrollTop=3000"
         driver.get(url)
         time.sleep(2)
         driver.execute_script(js)                                                   #运行JS 模拟滑动到底部
         time.sleep(2)
+        print('delay 2S----------------------------------------------------\n')
         body = driver.page_source                                                   #获取素有内容
-        print("访问"+request.url)
-        driver.quit()                                                               #关闭浏览器
-        return HtmlResponse(body=body, encoding='utf-8',request=request,url=url)
+        print("\n---------------------3-----访问-----3------"+request.url,'\n')
+        # driver.quit()                                                               #关闭浏览器
+        return HtmlResponse(body=body, encoding='utf-8',request=request,url=str(url))
 
 #
 # class HomesteadSpiderMiddleware(object):
