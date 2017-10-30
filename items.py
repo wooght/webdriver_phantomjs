@@ -18,3 +18,8 @@ class ArticleItem(scrapy.Item):
     article = scrapy.Field()
     thetime = scrapy.Field()
     src = scrapy.Field()
+
+class SseinfoItem(scrapy.Item):
+    ask = scrapy.Field()
+    time = scrapy.Field()
+    answer = scrapy.Field()

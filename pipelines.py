@@ -8,21 +8,28 @@
 #引入依赖文件 DropItem
 from scrapy.exceptions import DropItem
 import json
-from homestead.items import ArticleItem,HomesteadItem
+from homestead.items import ArticleItem,HomesteadItem,SseinfoItem
 
 class HomesteadPipeline(object):
+    def __init__(self):
+        self.Article_file = open('json/xueqiuarticle.json','a+',encoding='utf-8')
+        self.Homestead_file = open('json/xueqiu.json','a+',encoding='utf-8')
+        self.Sseinfo_file = open('json/Sseinfo_shede.json','a+',encoding='utf-8')
     def open_spider(self,spider):
-        pass
+        print('spider open','-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+
+    #spider没执行一次request得到response就会调用pipeline
     def process_item(self, item, spider):                               #通过判断item类型来调用不同的pipeline来处理item
         if isinstance(item,ArticleItem):
-            file = open('json/xueqiuarticle.json','a+',encoding='utf-8')
             line = json.dumps(dict(item),ensure_ascii=False)+"\n"
-            file.write(line)
+            self.Article_file.write(line)
         elif isinstance(item,HomesteadItem):
-            file = open('json/xueqiu.json','a+',encoding='utf-8')
             line = json.dumps(dict(item),ensure_ascii=False)+"\n"       #item是一个对象,要进行处理才能str格式保存
-            file.write(line)
-        return item
+            self.Homestead_file.write(line)
+        elif isinstance(item,SseinfoItem):
+            line = json.dumps(dict(item),ensure_ascii=False)+"\n"
+            self.Sseinfo_file.write(line)
+        return None
 
     def close_spider(self,spider):
         pass
