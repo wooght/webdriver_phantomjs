@@ -20,6 +20,7 @@ class ArticleItem(scrapy.Item):
     src = scrapy.Field()
 
 class SseinfoItem(scrapy.Item):
+    dm = scrapy.Field()
     ask = scrapy.Field()
     time = scrapy.Field()
-    answer = scrapy.Field()
+    anwser = scrapy.Field()

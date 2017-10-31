@@ -9,6 +9,7 @@
 from scrapy.exceptions import DropItem
 import json
 from homestead.items import ArticleItem,HomesteadItem,SseinfoItem
+import homestead.table as T
 
 class HomesteadPipeline(object):
     def __init__(self):
@@ -27,8 +28,10 @@ class HomesteadPipeline(object):
             line = json.dumps(dict(item),ensure_ascii=False)+"\n"       #item是一个对象,要进行处理才能str格式保存
             self.Homestead_file.write(line)
         elif isinstance(item,SseinfoItem):
-            line = json.dumps(dict(item),ensure_ascii=False)+"\n"
-            self.Sseinfo_file.write(line)
+            # line = json.dumps(dict(item),ensure_ascii=False)+"\n"
+            # self.Sseinfo_file.write(line)
+            i = T.sns_sseinfo.insert()
+            r = T.conn.execute(i,dict(item))
         return None
 
     def close_spider(self,spider):

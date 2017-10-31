@@ -24,7 +24,7 @@ cap['phantomjs.page.settings.host'] = 'xueqiu.com'
 #定义在外部 防止多次实例phantomjs
 global  driver
 #service_args=['..'] 具备访问加密请求https的功能
-driver = webdriver.PhantomJS(service_args=['--ssl-protocol=any'],executable_path="F:\homestead/phantomjs",desired_capabilities=cap)
+driver = webdriver.PhantomJS(service_args=['--ssl-protocol=any'],executable_path="F:\wwwroot\python_module/phantomjs",desired_capabilities=cap)
 
 class WooghtDownloadMiddleware(object):
 
