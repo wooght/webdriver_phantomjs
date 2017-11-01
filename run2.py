@@ -22,7 +22,7 @@ class ThreadClass(threading.Thread):
     def run(self):
         scrapyrun(self.args)
 
-spiders = ['Sseinfo_shede']
+spiders = ['Xueqiutoutiao']
 
 # if __name__=='__main__':
 #     for item in spiders:

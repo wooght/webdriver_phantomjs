@@ -24,3 +24,15 @@ class SseinfoItem(scrapy.Item):
     ask = scrapy.Field()
     time = scrapy.Field()
     anwser = scrapy.Field()
+
+class YicaiItem(scrapy.Item):
+    url = scrapy.Field()
+    title = scrapy.Field()
+    body = scrapy.Field()
+    time = scrapy.Field()
+
+class XueqiutoutiaoItem(scrapy.Item):
+    title = scrapy.Field()
+    url = scrapy.Field()
+    time = scrapy.Field()
+    body = scrapy.Field()

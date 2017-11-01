@@ -8,7 +8,7 @@
 #引入依赖文件 DropItem
 from scrapy.exceptions import DropItem
 import json
-from homestead.items import ArticleItem,HomesteadItem,SseinfoItem
+from homestead.items import ArticleItem,HomesteadItem,SseinfoItem,YicaiItem,XueqiutoutiaoItem
 import homestead.table as T
 
 class HomesteadPipeline(object):
@@ -31,6 +31,12 @@ class HomesteadPipeline(object):
             # line = json.dumps(dict(item),ensure_ascii=False)+"\n"
             # self.Sseinfo_file.write(line)
             i = T.sns_sseinfo.insert()
+            r = T.conn.execute(i,dict(item))
+        elif isinstance(item,YicaiItem):
+            i = T.yicai.insert()
+            r = T.conn.execute(i,dict(item))
+        elif isinstance(item,XueqiutoutiaoItem):
+            i = T.xueqiuarticle.insert()
             r = T.conn.execute(i,dict(item))
         return None
 

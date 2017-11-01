@@ -17,7 +17,9 @@ class Xueqiu2Spider(CrawlSpider):
 
     #连接控制 LinkExtractor 连接提取器
     rules = (
-        Rule(LinkExtractor(allow=('\/\d+\/\d+',)),callback='parse_item',follow=False),           #allow可以是具体连接,也可以是正则表达式 follow指是否需要在该连接下跟进
+        Rule(LinkExtractor(allow=('\/\d+\/\d+',)),callback='parse_item',follow=False),
+        #allow可以是具体连接,也可以是正则表达式 follow指是否需要在该连接下跟进
+        #cb_kwargs 是传递给毁掉函数的参数，格式为字典
     )
 
     '''

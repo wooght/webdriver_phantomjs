@@ -13,15 +13,25 @@ sns_sseinfo = Table('sns_sseinfo',metadata,
     Column('id',Integer,primary_key=True),
     Column('time',String(56)),              #时间
     # Column('ask',Varchar(256)),             #问题
-    Column('ask',Text(256)),             #问题
+    Column('ask',Text(256)),                #问题
     Column('anwser',Text()),                #回答
     Column('dm',String(16))                 #股票代码
 )
-#测试数据表
-sns_id = Table('sna_id',metadata,
+#第一财经新闻
+yicai = Table('yicai_news',metadata,
     Column('id',Integer,primary_key=True),
-    Column('info_id',Integer,nullable=False),
-    Column('name',String(64),nullable=True)
+    Column('url',Integer,nullable=False),     #网页地址ID号
+    Column('title',String(128),nullable=True),  #新闻标题
+    Column('body',Text),                        #新闻内容
+    Column('time',String(64))                   #发布时间
+)
+#雪球文章
+xueqiuarticle = Table('xueqiuarticle',metadata,
+    Column('id',Integer,primary_key=True),
+    Column('url',String(64)),
+    Column('title',String(128),nullable=True),  #新闻标题
+    Column('body',Text),                        #新闻内容
+    Column('time',String(64))                   #发布时间
 )
 # Column类型有：
 #     TIMESTAMP
